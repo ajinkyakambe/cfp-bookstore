@@ -1,16 +1,12 @@
-import logo from './logo.svg';
+
 import './App.css';
-import {Nav} from '_layout'
+import {BookStoreHome} from 'bookstorehome'
 
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-       
-       <Nav />
-     
-      </header>
+    <div className="App">           
+       <BookStoreHome />         
     </div>
   );
 }
