@@ -7,12 +7,17 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import Container from '@mui/material/Container';
+import IconButton from '@mui/material/IconButton';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Badge from '@mui/material/Badge';
+
+
 
 export {Nav}
 
 
-// Logic of Component
-
+// Logic of Component using the theme
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -55,13 +60,23 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: '0 4px',
+  },
+}));
+
 
 
 function Nav() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ bgcolor: '#A03037'}}>
-        <Toolbar>      
+      <Container maxWidth="md"> 
+        <Toolbar disableGutters>      
           <Typography
             variant="h6"
             noWrap
@@ -83,7 +98,16 @@ function Nav() {
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
           </Box>
+
+          <IconButton aria-label="cart">
+            <StyledBadge badgeContent={4} color="secondary">
+              <ShoppingCartIcon />
+            </StyledBadge>
+          </IconButton>
+
         </Toolbar>
+        
+        </Container>
       </AppBar>
      
     </Box>

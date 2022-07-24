@@ -1,0 +1,62 @@
+/* scss */
+
+/* Varabiles global */
+$fontColor:#0A0102;
+$fontSize:12px;
+$fontWeight:normal;
+$buttonSize:11px!important;;
+
+body {
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $fontColor;
+  font-weight: $fontWeight;
+  font-size: $fontSize;
+}
+
+h2{
+  font-size: 25px;
+  font-weight: normal;
+}
+
+button {
+  font-size:$buttonSize;
+  border-radius: unset !important;
+}
+
+.css-46bh2p-MuiCardContent-root {
+  padding: 22px!important;
+  padding-bottom: 11px!important;
+ 
+}
+
+h6{
+  font-size:14px;
+}
+
+.css-1bnap8s-MuiTypography-root {
+  font-family: 'Lato', sans-serif!important;
+}
+
+.css-o69gx8-MuiCardMedia-root{
+  background: #F5F5F5 0% 0% no-repeat padding-box;
+  border-radius: 2px 2px 0px 0px;
+  opacity: 1;
+  object-fit: contain!important;
+  padding: 16px 0px;
+}
+
+.css-1w5ymjp-MuiPaper-root-MuiCard-root{
+background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 1px solid #E2E2E2!important;
+box-shadow: none!important;
+opacity: 1;
+}
+
+
+.css-10r5to9-MuiCardActions-root{
+  padding: 5px 23px 10px 23px!important;
+  justify-content: space-between!important;
+}
