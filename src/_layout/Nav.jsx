@@ -100,7 +100,7 @@ function Nav() {
           </Box>
 
           <IconButton aria-label="cart">
-            <StyledBadge badgeContent={4} color="secondary">
+            <StyledBadge badgeContent={0} color="secondary">
               <ShoppingCartIcon />
             </StyledBadge>
           </IconButton>

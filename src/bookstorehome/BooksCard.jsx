@@ -17,9 +17,9 @@ const HtmlTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))(({ theme }) => ({
   [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: '#f5f5f9',
+    backgroundColor: '#ffffff',
     color: '#9D9D9D',
-    maxWidth: 235,
+    maxWidth: 190,
     fontSize: theme.typography.pxToRem(11),
     border: '1px solid #E2E2E2',
   },
@@ -32,8 +32,6 @@ function BooksCard(props) {
 
   const BASEURL = "http://localhost:3000/bookimages/"
 
- 
- 
   const isOpen = props.singleBookDataForDisplaying.bookQuantity>0 ? true : false;
  
 
@@ -49,7 +47,7 @@ function BooksCard(props) {
             <Typography color="#0A0102">Book Details</Typography>
            {props.singleBookDataForDisplaying.bookDescription}
           </React.Fragment>
-        }
+        } placement="top"
       >
 
 
