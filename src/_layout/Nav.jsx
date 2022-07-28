@@ -11,6 +11,7 @@ import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
+import { Link } from 'react-router-dom';
 
 
 
@@ -99,7 +100,7 @@ function Nav() {
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
           </Box>
 
-          <IconButton aria-label="cart">
+          <IconButton component={Link} to={'/cart'} aria-label="cart" >
             <StyledBadge badgeContent={0} color="secondary">
               <ShoppingCartIcon />
             </StyledBadge>

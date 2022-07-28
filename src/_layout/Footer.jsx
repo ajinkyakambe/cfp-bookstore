@@ -1,9 +1,15 @@
 import React from 'react'
 
+export {Footer}
+
 function Footer() {
   return (
-    <div>Footer</div>
+    
+    <footer >
+    <p  class="footertext">Copyright © 2022,
+        Bookstore Private Limited. All Rights Reserved</p>
+  </footer>
+
   )
 }
 
-export default Footer

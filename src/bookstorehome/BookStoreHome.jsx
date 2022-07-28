@@ -1,7 +1,7 @@
-import React,{useEffect,useState} from 'react';
+import React,{useState} from 'react';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import {Nav} from '_layout'
+import {Nav,Footer} from '_layout'
 import {BooksCard} from 'bookstorehome'
 import BookStoreService from '../_services/BookStoreService'
 import MenuItem from '@mui/material/MenuItem';
@@ -9,7 +9,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Box from '@mui/material/Box';
 
-import {toast} from 'react-toastify'
+import {ToastContainer} from 'react-toastify'
 
 
 
@@ -17,27 +17,9 @@ export {BookStoreHome}
 
 
 
-function BookStoreHome() {
+function BookStoreHome({books,cart,sortedDataUpdate ,onAddToCart,userDetail,BASEURL}) {
 
- let [bookStoreBooks, setBookStoreBooks] = useState([]);
-
- useEffect(() => {
-  getAllBooksToDisplay();
- },[])  
-
- const getAllBooksToDisplay = () => {
-  BookStoreService
-  .getAllBooks()
-  .then((responsedata) => {
-    console.log("Got all books");
-    setBookStoreBooks(responsedata.data.data)
-  })
-  .catch((error)=>{
-    toast.error("Error with api service", error)
-    console.log(error)
-  })  
- }
- 
+  
  /**
  |--------------------------------------------------
  | Sort by price
@@ -51,38 +33,40 @@ function BookStoreHome() {
    sort(event.target.value)    
 };
 
-const sort = (type) =>{
+const sort = async(type) =>{
   if(type === 'priceAsc'){
     BookStoreService
     .getBooksAscPrice()    
     .then((responsedata)=>{
+      console.log('Asc',responsedata);
       return responsedata;
     })
     .then((response)=>{
-      setBookStoreBooks(response.data.data); 
+       sortedDataUpdate(response.data.data); 
     })
   } else if (type ==='priceDec'){
     BookStoreService
     .getBooksDecPrice()
     .then((responsedata)=>{
+      console.log('DEC',responsedata);
      return responsedata;
     })
     .then((response)=>{
-      setBookStoreBooks(response.data.data); 
+      sortedDataUpdate(response.data.data); 
     })
   } 
 
 };
 
-
   return (
     <>
-    <Nav/>    
+    <Nav/> 
+    
     <Container maxWidth="md">        
     
     <Grid container spacing={0}>
   <Grid item xs={8}>
-   <div class='headerBar'><span class='headerName'>Books </span> <span class='count'>({bookStoreBooks.length} items)</span> </div>
+   <div class='headerBar'><span class='headerName'>Books </span> <span class='count'>({books.length} items)</span> </div>
   </Grid>
  
   <Grid item xs >
@@ -111,14 +95,16 @@ const sort = (type) =>{
     <Grid container justifyContent="center"
         alignItems="center" spacing={{ xs: 1, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 , lg: 12 }}>
             {             
-                bookStoreBooks && bookStoreBooks.map((singlebookitem,indexinner) => (
+                books && books.map((singlebookitem,indexinner) => (
                 <Grid item xs={4} sm={4} md={3} lg={3} key={indexinner}>  
-                      <BooksCard singleBookDataForDisplaying={singlebookitem} />                       
+                      <BooksCard singlebookitem={singlebookitem} cart={cart} onAddToCart={onAddToCart} userDetail={userDetail} BASEURL={BASEURL} />                       
                 </Grid>
               ))                
             }
          </Grid>
       </Container>
+      <Footer/>
     </>
+    
   );
 }
