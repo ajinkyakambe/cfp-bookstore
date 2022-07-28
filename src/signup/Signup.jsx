@@ -17,11 +17,13 @@ export {Signup}
 const Signup = () => {
 	const paperStyle = {backgroundColor: '#DCDCDC', padding: 20, width: 350, margin: '0 auto' };
 	const headerStyle = { margin: 0 };
-	
-	const marginTop = { marginTop: 5 };
+	const textStyle = {marginTop: '4px', marginBottom: '18px'}
+	const buttonSignup = {backgroundColor: '#3371B5'}	
 	const [ details, setDetails ] = useState({ firstName: '',lastName:'', email: '', address: '', password: '' });
 	const [ confirmPassword, setConfirmPassword ] = useState('');
 	const navigate = useNavigate();
+
+	// Delete in prod
 	console.log('Hello there', details);
 
 	const handleSignup = async (data) => {
@@ -42,7 +44,7 @@ const Signup = () => {
 						Please fill this form to create an account !
 					</Typography>
 				</Grid>
-				<TextField
+				<TextField style={textStyle}
 					onChange={(e) => {
 						setDetails({ ...details, firstName: e.target.value });
 					}}
@@ -51,7 +53,7 @@ const Signup = () => {
 					name="firstName"
 					placeholder="Enter your first name"
 				/>
-				<TextField
+				<TextField style={textStyle}
 					onChange={(e) => {
 						setDetails({ ...details, lastName: e.target.value });
 					}}
@@ -60,7 +62,7 @@ const Signup = () => {
 					name="lastName"
 					placeholder="Enter your last name"
 				/>
-				<TextField
+				<TextField style={textStyle}
 					onChange={(e) => {
 						setDetails({ ...details, email: e.target.value });
 					}}
@@ -70,7 +72,7 @@ const Signup = () => {
 					placeholder="Enter your email"
 				/>
 
-				<TextField
+				<TextField style={textStyle}
 					onChange={(e) => {
 						setDetails({ ...details, address: e.target.value });
 					}}
@@ -79,7 +81,7 @@ const Signup = () => {
 					name="address"
 					placeholder="Enter your address"
 				/>
-				<TextField
+				<TextField style={textStyle}
 					onChange={(e) => {
 						setDetails({ ...details, password: e.target.value });
 					}}
@@ -88,7 +90,7 @@ const Signup = () => {
 					name="password"
 					placeholder="Enter your password"
 				/>
-				<TextField
+				<TextField style={textStyle}
 					onChange={(e) => {
 						setConfirmPassword(e.target.value);
 					}}
@@ -97,15 +99,14 @@ const Signup = () => {
 					name="confirm password"
 					placeholder="Confirm your password"
 				/>
-				<FormControlLabel control={<Checkbox name="checkedA" />} label="I accept the terms and conditions." />
-
-				<Button
+			
+				<Button style={buttonSignup}
 					type="submit"
 					onClick={() => {
 						handleSignup(details);
 					}}
 					variant="contained"
-					color="primary"
+					
 				>
 					Sign up
 				</Button>

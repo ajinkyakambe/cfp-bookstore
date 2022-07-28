@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import {Nav,Footer} from '_layout'
+
 import {BooksCard} from 'bookstorehome'
 import BookStoreService from '../_services/BookStoreService'
 import MenuItem from '@mui/material/MenuItem';
@@ -59,21 +59,20 @@ const sort = async(type) =>{
 };
 
   return (
-    <>
-    <Nav/> 
+
     
-    <Container maxWidth="md">        
+  <Container maxWidth="md">        
     
     <Grid container spacing={0}>
   <Grid item xs={8}>
-   <div class='headerBar'><span class='headerName'>Books </span> <span class='count'>({books.length} items)</span> </div>
+   <div className='headerBar'><span className='headerName'>Books </span> <span className='count'>({books.length} items)</span> </div>
   </Grid>
  
   <Grid item xs >
   
   <Box display="flex" justifyContent="flex-end">
   <FormControl sx={{ minWidth:130}}>       
-        <Select sx={{'padding': '3.5px 17px','border-radius': '0' }}
+        <Select sx={{padding: '3.5px 17px',borderRadius: '0' }}
           labelId="sort-by-id-label"
           id="sort-simple-select"
           value={selectValue}
@@ -86,9 +85,6 @@ const sort = async(type) =>{
       </FormControl>
     </Box>
 
-  
-
-  
   </Grid>
 </Grid>
 
@@ -103,8 +99,8 @@ const sort = async(type) =>{
             }
          </Grid>
       </Container>
-      <Footer/>
-    </>
+     
+    
     
   );
 }

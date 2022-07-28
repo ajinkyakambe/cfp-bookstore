@@ -14,6 +14,7 @@ body {
   color: $fontColor;
   font-weight: $fontWeight;
   font-size: $fontSize;
+  background-color: #FAFAFA;
 }
 
 .headerName{
@@ -132,4 +133,15 @@ footer{
 .css-vj1n65-MuiGrid-root
 {
   padding:4% !important;
+}
+
+
+
+//Cart item
+
+.cart-text{
+  font-size:1.2rem;
+  padding: 0 22px;
+
+padding-top: 22px;
 }

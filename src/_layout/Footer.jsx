@@ -6,7 +6,7 @@ function Footer() {
   return (
     
     <footer >
-    <p  class="footertext">Copyright © 2022,
+    <p  className="footertext">Copyright © 2022,
         Bookstore Private Limited. All Rights Reserved</p>
   </footer>
 

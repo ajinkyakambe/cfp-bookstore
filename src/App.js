@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-import { BrowserRouter,  Routes,  Route } from "react-router-dom";
-
+import { BrowserRouter,  Routes,  Route, Router } from "react-router-dom";
+import {MainLayout} from '_layout'
 import BookStoreService from './_services/BookStoreService'
 import CartService from './_services/CartService'
 import {BookStoreHome} from 'bookstorehome'
@@ -148,25 +148,7 @@ const [ books, setBooks ] = useState([]);
 		setUserDetails(undefined);
 	}
 
-  /**
-  |--------------------------------------------------
-  | Cart Counter global
-  |--------------------------------------------------
-  */
-
-  const [cartCount, setCartCount] = useState(0);
-
-  //Count the cart element
-  const countCart= () => {
-    let counter = cart.length;
-    setCartCount(counter)
-  }
-
-   useEffect(
-    ()=> {
-      countCart();
-    }
-   )
+  
 
   
 
@@ -177,8 +159,9 @@ const [ books, setBooks ] = useState([]);
    <ToastContainer />
    
     <BrowserRouter>
-      <Routes>
-      <Route
+    <Routes>
+     <Route element={<MainLayout />}>
+       <Route
 						exact
 						path="/"
 						element={
@@ -196,8 +179,7 @@ const [ books, setBooks ] = useState([]);
             element={
               isLogin ? ( <BookStoreHome 
                   books={books}			
-                  cart={cart}			
-                  cartcount = {cartCount}			
+                  cart={cart}					
 									onAddToCart={handleAddToCart}
                   userDetail={userDetails}
                   sortedDataUpdate = {sortedDataUpdate}
@@ -224,7 +206,8 @@ const [ books, setBooks ] = useState([]);
       {/* // Non login Routes */}
       <Route exact path="/signup" element={<Signup />} />  
       <Route exact path="/forgotpassword" element={<ForgotPassword />} /> 
-      </Routes>       
+      </Route>
+      </Routes>
     </BrowserRouter>
     </>        
    

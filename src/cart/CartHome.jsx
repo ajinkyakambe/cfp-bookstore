@@ -1,23 +1,30 @@
 import React from 'react';
-import { Container, Typography, Button, Grid } from '@mui/material';
+import { Container, Typography, Button, Stack,Box,Card,CardContent} from '@mui/material';
 import { Link } from 'react-router-dom';
 
+
 import CartItem from './CartItem';
-import useStyles from './CartHomeStyles';
+
 
 
 
 const CartHome = ({ cart , handleRemoveFromCart, handleDecreaseQuantity,handleIncreaseQuantity, handleDeleteAllFromCart,books,BASEURL}) => {
-  const stylesToApply = useStyles();
-
+  
+/**
+|--------------------------------------------------
+|   // Cart Total Value Count
+|--------------------------------------------------
+*/
   let subtotal = 0;
   cart.map((item) => {
    return subtotal=subtotal+(item.quantity*item.book.bookPrice);
   })
 
- 
-  console.log("Is cart empty?",cart.length);
-
+ /**
+ |--------------------------------------------------
+ | Render an empty card 
+ |--------------------------------------------------
+ */
 
   const renderEmptyCart = () => (     
     <Typography variant="subtitle1">You have no items in your shopping cart,
@@ -26,38 +33,56 @@ const CartHome = ({ cart , handleRemoveFromCart, handleDecreaseQuantity,handleIn
   );
 
  
+  /**
+  |--------------------------------------------------
+  | Render the cart when data is available
+  |--------------------------------------------------
+  */
  
   const renderCart = () => (
    
     <>   
-      <Grid container spacing={4}>
+      <Stack spacing={2}>
         {cart.map((lineItem) => (
-          <Grid item xs={12} sm={4} key={lineItem.cartId}>
-           
+          <div className="cartBookItem" key={lineItem.cartId}>           
             <CartItem book={books.find((item)=> 
               item.bookId===lineItem.book.bookId
-
-          )} item={lineItem}  onRemoveFromCart={handleRemoveFromCart} handleDecreaseQuantity={handleDecreaseQuantity}
-									handleIncreaseQuantity={handleIncreaseQuantity} BASEURL={BASEURL} />
-          </Grid>
+          )} item={lineItem}  
+             onRemoveFromCart={handleRemoveFromCart} 
+             handleDecreaseQuantity={handleDecreaseQuantity}
+						 handleIncreaseQuantity={handleIncreaseQuantity} 
+             BASEURL={BASEURL} />
+          </div>
         ))}
-      </Grid>
+    </Stack>
+   
+      
+
       <div >
-      <Typography variant="h5" >Subtotal : <b >₹{subtotal}</b></Typography>
+      <Typography sx={{margin: '10px 0'}} variant="h6" >Subtotal : <b >₹{subtotal}</b></Typography>
+       {/* // checkout Action */}
         <div>
           <Button  size="large" type="button" variant="contained" color="secondary" onClick={() => handleDeleteAllFromCart()} >Empty cart</Button>
-          <Button component={Link} to="/checkout" size="large" type="button" variant="contained" >Checkout</Button>
+          {/* <Button component={Link} to="/checkout" size="large" type="button" variant="contained" >Checkout</Button> */}
         </div>
       </div>
+
+
     </>
   );
 
   return (
     <Container>
-      <div  />
-      <Typography  variant="h5" gutterBottom><b>Your Shopping Cart</b></Typography>
-      <hr/>
-      { !cart.length ? renderEmptyCart() : renderCart() }
+     <Box sx={{ minWidth: 275, maxWidth: 745  }}>
+      <Card variant="outlined" sx={{borderRadius:0,margin:'7% 0' }}>
+      <Box sx={{ width: '100%' }}>
+          <div className="cart-text">My Cart ({cart.length})</div>
+          <CardContent>
+            { !cart.length ? renderEmptyCart() : renderCart() }
+          </CardContent>
+        </Box>
+      </Card>
+    </Box>
     </Container>
   );
 };

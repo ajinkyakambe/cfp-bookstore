@@ -40,7 +40,7 @@ function BooksCard({singlebookitem,cart,onAddToCart,userDetail,BASEURL}) {
       >
 
 
-    <Card id={singlebookitem.bookId} sx={{ 'text-align': 'left' }}>
+    <Card id={singlebookitem.bookId} sx={{ textAlign: 'left' }}>
       
       <CardMedia
         component="img"
@@ -52,22 +52,23 @@ function BooksCard({singlebookitem,cart,onAddToCart,userDetail,BASEURL}) {
       <CardContent>
       
 
-        <Typography  variant="h6" component="div" sx={{'font-size':'14px','font-weight': '600','line-height': '1.3'}}>
+        <Typography  variant="h6" component="div" sx={{fontSize:'14px',fontWeight: '600',lineHeight: '1.3'}}>
           {singlebookitem.bookName}
         </Typography>
-        <Typography variant="body4" color="text.secondary" sx={{'font-size':'9px'}} >
+        <Typography variant="body4" color="text.secondary" sx={{fontSize:'9px'}} >
           by {singlebookitem.bookAuthor}
         </Typography>
 
 
-        <Typography  variant="h5" component="div" sx={{'font-size':'12px','font-weight':'bold','margin-top':'4%'}}>
+        <Typography  variant="h5" component="div" sx={{fontSize:'12px',fontWight:'bold',marginTop:'4%'}}>
         ₹{singlebookitem.bookPrice}
+        
         </Typography>
 
 
       </CardContent>
       <CardActions sx={{justifyContent: 'center'}}>
-        <Button disabled={singlebookitem.bookQuantity ===0}  sx={{ border: '1px #9D9D9D solid','color': 'white', 'background-color': '#6f1816'}} 
+        <Button disabled={singlebookitem.bookQuantity ===0}  sx={{ border: '1px #9D9D9D solid',color: 'white', backgroundColor: '#6f1816'}} 
         onClick={() => onAddToCart({bookId:singlebookitem.bookId,quantity: 1,userId:userDetail.userId})} size="small">ADD TO BAG</Button>
         <Button  sx={{ border: '1px #9D9D9D solid','color':'#0A0102'}} size="small">WISHLIST</Button>
       </CardActions>

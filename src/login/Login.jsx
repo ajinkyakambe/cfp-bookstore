@@ -11,9 +11,10 @@ export {Login}
 
 const Login = ({ handleUserLogin, setUserDetails }) => {
 	
-	const paperStyle = {  backgroundColor: '#F0F8FF', padding: 10, height: '63vh', width: 350, margin: '0 auto' };
+	const paperStyle = {  backgroundColor: '#DCDCDC', padding: 10, height: '55vh', width: 350, margin: '0 auto' };
 	
 	const btnstyle = { margin: '8px 0' };
+	const textStyle = {marginTop: '4px', marginBottom: '18px'}
 	const [ userLogin, setUserLogin ] = useState({ email: '', password: '' });
 	const handleLogin = async (data) => {
 		await api.loginDetails(data).then((response) => {
@@ -24,23 +25,24 @@ const Login = ({ handleUserLogin, setUserDetails }) => {
 	};
 	return (
 		<>
-		<Nav/>
+		
 		<Grid >
 			<Paper style={paperStyle}>
 				<Grid align="center">
 					
 					<h2>Sign In</h2>
 				</Grid>
-				<TextField
+				<TextField style={textStyle}
 					onChange={(e) => {
 						setUserLogin({ ...userLogin, email: e.target.value });
 					}}
 					label="UserEmail"
 					placeholder="Enter useremail"
 					fullWidth
+					id="margin-dense" margin="dense"
 					required
 				/>
-				<TextField
+				<TextField style={textStyle}
 					onChange={(e) => {
 						setUserLogin({ ...userLogin, password: e.target.value });
 					}}
@@ -50,7 +52,7 @@ const Login = ({ handleUserLogin, setUserDetails }) => {
 					fullWidth
 					required
 				/>
-				{/* <FormControlLabel control={<Checkbox name="checkedB" color="primary" />} label="Remember me" /> */}
+				
 				<Button
 					type="submit"
 					onClick={() => handleLogin({ ...userLogin })}
@@ -74,7 +76,7 @@ const Login = ({ handleUserLogin, setUserDetails }) => {
 				</Typography>
 			</Paper>
 		</Grid>
-		<Footer />
+		
 		</>
 	);
 };

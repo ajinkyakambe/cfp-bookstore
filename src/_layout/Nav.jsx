@@ -1,4 +1,4 @@
-import * as React from 'react';
+import  React,{useEffect,useState} from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -12,7 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
 import { Link } from 'react-router-dom';
-
+import CartService from '../_services/CartService'
 
 
 export {Nav}
@@ -65,7 +65,9 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
     right: -3,
     top: 13,
-    border: `2px solid ${theme.palette.background.paper}`,
+    color:'black',
+    border: `1px solid #2E1D1E`,
+    backgroundColor: '#FAFAFA',
     padding: '0 4px',
   },
 }));
@@ -73,6 +75,37 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 
 function Nav() {
+
+/**
+  |--------------------------------------------------
+  | Cart Counter global
+  |--------------------------------------------------
+  */
+
+  const [cartCount, setCartCount] = useState(0);
+
+  //Count the cart element
+  const  countCart = async () => {
+    let cart = await CartService
+    .getAllBookInCart()
+    .then((response)=>{
+      return response.data.data;
+    });
+
+    
+
+    let counter = cart.length;
+    setCartCount(counter)
+  }
+
+   useEffect(
+    ()=> {
+      countCart();
+    })
+
+   console.log("cartCount is ",cartCount);
+
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ bgcolor: '#A03037'}}>
@@ -101,7 +134,7 @@ function Nav() {
           </Box>
 
           <IconButton component={Link} to={'/cart'} aria-label="cart" >
-            <StyledBadge badgeContent={0} color="secondary">
+            <StyledBadge badgeContent={cartCount} >
               <ShoppingCartIcon />
             </StyledBadge>
           </IconButton>
