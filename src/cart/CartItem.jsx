@@ -16,7 +16,7 @@ const CartItem = ({ item , onRemoveFromCart, handleIncreaseQuantity, handleDecre
    alt={item.book.bookName}
  />
  <Box sx={{ display: 'flex', flexDirection: 'column' }}>     
-   <CardContent sx={{ flex: '1 0 auto' }}>
+   <CardContent sx={{ flex: 'initial' }}>
      <Typography component="div" variant="h6" >
        {item.book.bookName}
      </Typography>

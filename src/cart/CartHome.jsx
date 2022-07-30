@@ -1,8 +1,9 @@
-import React from 'react';
+import React,{ useState} from 'react';
 import { Container, Typography, Button, Stack,Box,Card,CardContent} from '@mui/material';
 import { Link } from 'react-router-dom';
+import AdressBookCart from '../addressBookCart/AdressBookCart'
 
-
+import OrderBox from '../orderBox/OrderBox'
 import CartItem from './CartItem';
 
 
@@ -10,6 +11,30 @@ import CartItem from './CartItem';
 
 const CartHome = ({ cart , handleRemoveFromCart, handleDecreaseQuantity,handleIncreaseQuantity, handleDeleteAllFromCart,books,BASEURL}) => {
   
+
+/**
+|--------------------------------------------------
+| Cart order and address
+|--------------------------------------------------
+*/
+
+const [orderDisplay, setOrderDisplay] = useState(false)
+const [addressDisplay, setAddressDisplay] = useState(false)
+
+
+
+
+const onClickingOrderButton = () => {
+  setAddressDisplay(true)
+
+}
+const handleOrderDisplay = () => {
+  setOrderDisplay(true)
+
+}
+
+
+
 /**
 |--------------------------------------------------
 |   // Cart Total Value Count
@@ -62,8 +87,9 @@ const CartHome = ({ cart , handleRemoveFromCart, handleDecreaseQuantity,handleIn
       <Typography sx={{margin: '10px 0'}} variant="h6" >Subtotal : <b >₹{subtotal}</b></Typography>
        {/* // checkout Action */}
         <div>
-          <Button  size="large" type="button" variant="contained" color="secondary" onClick={() => handleDeleteAllFromCart()} >Empty cart</Button>
-          {/* <Button component={Link} to="/checkout" size="large" type="button" variant="contained" >Checkout</Button> */}
+          <Button sx={{padding: '1% 8%',
+                    fontSize: '14px!important'}}   type="button" variant="contained" color="secondary" onClick={() => handleDeleteAllFromCart()} >Empty cart</Button>
+        
         </div>
       </div>
 
@@ -74,16 +100,53 @@ const CartHome = ({ cart , handleRemoveFromCart, handleDecreaseQuantity,handleIn
   return (
     <Container>
      <Box sx={{ minWidth: 275, maxWidth: 745  }}>
-      <Card variant="outlined" sx={{borderRadius:0,margin:'7% 0' }}>
+      <Card variant="outlined" sx={{borderRadius:0,margin:'5% 0' }}>
       <Box sx={{ width: '100%' }}>
           <div className="cart-text">My Cart ({cart.length})</div>
           <CardContent>
             { !cart.length ? renderEmptyCart() : renderCart() }
           </CardContent>
         </Box>
+        {/* comp */}
+        <Box className="cart-box-three">
+                  { addressDisplay ? null :
+                  <Button sx={{padding: '1% 8%',
+                    fontSize: '14px!important',
+                    backgroundColor: '#3371B5'}} variant="contained" className="place-order-button" onClick={onClickingOrderButton}>Place Order</Button>
+              }    
+          </Box>
+       {/* comp end*/}
       </Card>
+      
     </Box>
-    </Container>
+
+{/* //Cart box logic */}
+    <Box className="cart-address-box">
+        <Card variant="outlined" sx={{borderRadius:0,margin:'5% 0' }}>
+                        {addressDisplay ? 
+                        <AdressBookCart handleOrderDisplay={handleOrderDisplay}  orderDisplay={orderDisplay}/>                   
+                            :<Box className="address-box-one">
+                                <div className="cart-address-text" style={{ color: 'gray' }}>Customer Details</div>
+                            </Box>
+                        }
+          </Card>
+      </Box>
+    
+{/* // Order box logic */}
+      <Box className="cart-order-box">
+        <Card variant="outlined" sx={{borderRadius:0,margin:'5% 0' }}>
+            <Box sx={{ width: '100%' }}>              
+              <CardContent>
+                          {orderDisplay ? <OrderBox cart={cart} BASEURL={BASEURL}/> 
+                          : <Box className="order-box-one">
+                                  <div className="cart-order-text" style={{ color: 'gray' }}>Order Summary</div>
+                              </Box>
+                          }
+                </CardContent>
+              </Box>
+           </Card>
+        </Box>
+ </Container>
   );
 };
 

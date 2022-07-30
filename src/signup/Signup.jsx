@@ -34,7 +34,7 @@ const Signup = () => {
 
 	return (
 		<>
-		<Nav/>
+		
 		<Grid>
 			<Paper style={paperStyle}>
 				<Grid align="center">
@@ -112,7 +112,7 @@ const Signup = () => {
 				</Button>
 			</Paper>
 		</Grid>
-		<Footer/>
+		
 		</>
 	);
 };

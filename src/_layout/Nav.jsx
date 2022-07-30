@@ -74,7 +74,12 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 
 
-function Nav() {
+function Nav({isLogin}) {
+
+
+  console.log("Nav login info ",isLogin);
+
+
 
 /**
   |--------------------------------------------------
@@ -97,6 +102,7 @@ function Nav() {
     let counter = cart.length;
     setCartCount(counter)
   }
+
 
    useEffect(
     ()=> {
@@ -134,7 +140,7 @@ function Nav() {
           </Box>
 
           <IconButton component={Link} to={'/cart'} aria-label="cart" >
-            <StyledBadge badgeContent={cartCount} >
+            <StyledBadge badgeContent={isLogin? cartCount : '0'} >
               <ShoppingCartIcon />
             </StyledBadge>
           </IconButton>

@@ -1,0 +1,60 @@
+.address-box-two {
+    /* border: 1px solid red;  */
+   width: 92%;
+   height: 50vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
+   padding: 21px 18px 21px 36px !important
+}
+.textfield-box-one{
+   /* border: 1px solid red;  */
+   width: 100%;
+   height: 20%;
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;  
+   gap: 1rem;  
+}
+.box-one-textfield{
+   width: 34%;
+}
+.textfield-box-two{
+   /* border: 1px solid red;  */
+   width: 100%;
+   height: 40%;
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;   
+}
+.address-textfield{
+   width: 70%;
+}
+.textfield-box-three{
+   /* border: 1px solid red;  */
+   width: 100%;
+   height: 20%;
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;  
+   gap: 1rem;  
+}
+.textfield-box-four{
+   /* border: 1px solid red;  */
+   width: 100%;
+   height: 20%;
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;  
+   gap: 1rem; 
+}
+
+.address-box-three{
+   width: 92%;
+   height: 8vh;
+   display: flex;
+   justify-content: flex-end;
+   align-items: center; 
+  
+}

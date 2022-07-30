@@ -5,10 +5,10 @@ import { Outlet } from 'react-router-dom';
 
 export {MainLayout}
 
-const MainLayout = () => {
+const MainLayout = ({isLogin}) => {
     return (
     <>
-        <Nav />        
+        <Nav isLogin = {isLogin} />        
             <div><Outlet/></div>
         <Footer/>        
     </>

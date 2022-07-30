@@ -17,6 +17,10 @@ class UserRegService{
       return axios.post(`http://localhost:8080/api/userservice/login`,data)
   }
 
+  addCustomer (obj)  {
+      return  axios.post("http://localhost:3005/api/v1/customer/add", obj);
+      
+  }
 
     // constuctor(){
     //     this.new_user_axios = axios.create({
